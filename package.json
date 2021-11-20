@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "app-api" : "swa start dist --api-location api"
+    "swa" : "swa start dist --api-location api"
   },
   "dependencies": {
     "core-js": "^3.6.4",
