@@ -34,7 +34,7 @@
 		{
 			"type": "shell",
 			"label": "swa start",
-			"command": "swa start http://localhost:8080/ --api-location http://localhost:7071 --run \"npm run serve\"",
+			"command": "swa start dist --api-location http://localhost:7071 --run \"npm run serve\"",
 			"isBackground": true,
 			"problemMatcher": [
 				{
@@ -57,6 +57,19 @@
 				"cwd": "${workspaceFolder}"
 			},
 			"dependsOn": []
+		},
+		{
+			"label": "app stop",
+			"type": "shell",
+			"command": "echo ${input:terminate}"
+		}
+	],
+	"inputs": [
+		{
+			"id": "terminate",
+			"type": "command",
+			"command": "workbench.action.tasks.terminate",
+			"args": "terminateAll"
 		}
 	]
 }
