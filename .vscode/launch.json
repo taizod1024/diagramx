@@ -3,7 +3,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome",
+            "name": "debug swa",
             "request": "launch",
             "type": "pwa-chrome",
             "url": "http://localhost:4280",
@@ -16,14 +16,15 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${webRoot}/*"
             },
-            "postDebugTask": "app stop"
+            "preLaunchTask": "swa start",
+            "postDebugTask": "swa stop"
         },
         {
-            "name": "Attach to Node Functions",
+            "name": "debug api",
             "type": "node",
             "request": "attach",
             "port": 9229,
-            "preLaunchTask": "func: host start",
+            "preLaunchTask": "api start",
             "presentation": {
                 "hidden": true,
                 "group": "",
@@ -33,13 +34,11 @@
     ],
     "compounds": [
         {
-            "name": "Launch Static Web App",
+            "name": "debug app",
             "configurations": [
-                "Attach to Node Functions",
-                "Launch Chrome"
+                "debug swa",
+                "debug api"
             ],
-            "stopAll": true,
-            "preLaunchTask": "swa start"
         }
     ]
 }
