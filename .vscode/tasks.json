@@ -38,31 +38,13 @@
 			"command": "host start",
 			"problemMatcher": "$func-node-watch",
 			"isBackground": true,
-			"dependsOn": "npm install (functions)",
 			"options": {
 				"cwd": "${workspaceFolder}/api",
 				"env": {
 					"languageWorkers__node__arguments": "--inspect=9229"
 				}
 			}
-		},
-		{
-			"type": "shell",
-			"label": "npm install (functions)",
-			"command": "npm install",
-			"options": {
-				"cwd": "${workspaceFolder}/api"
-			}
-		},
-		{
-			"type": "shell",
-			"label": "npm prune (functions)",
-			"command": "npm prune --production",
-			"problemMatcher": [],
-			"options": {
-				"cwd": "${workspaceFolder}/api"
-			}
-		},
+		}
 	],
 	"inputs": [
 		{
