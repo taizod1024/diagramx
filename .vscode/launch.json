@@ -2,11 +2,42 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Node Functions",
+            "name": "debug swa",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:4280",
+            "webRoot": "${workspaceFolder}",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            },
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${webRoot}/*"
+            },
+            "preLaunchTask": "swa start",
+            "postDebugTask": "swa stop"
+        },
+        {
+            "name": "debug api",
             "type": "node",
             "request": "attach",
             "port": 9229,
-            "preLaunchTask": "func: host start"
+            "preLaunchTask": "api start",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "debug app",
+            "configurations": [
+                "debug swa",
+                "debug api"
+            ],
         }
     ]
 }
