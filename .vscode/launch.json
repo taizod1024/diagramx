@@ -1,3 +1,4 @@
+// TODO 依存関係の整理
 {
     "version": "0.2.0",
     "configurations": [
@@ -13,8 +14,9 @@
                 "order": 1
             },
             "sourceMapPathOverrides": {
-              "webpack:///./*": "${webRoot}/src/*"
-            }
+                "webpack:///./*": "${webRoot}/*"
+            },
+            "postDebugTask": "app stop"
         },
         {
             "name": "Attach to Node Functions",
