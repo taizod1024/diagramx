@@ -2,10 +2,41 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch SWA",
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:4280",
+            "webRoot": "${workspaceFolder}",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            },
+            "sourceMapPathOverrides": {
+              "webpack:///./*": "${webRoot}/src/*"
+            }
+        },
+        {
+            "name": "Attach to Node Functions",
             "type": "node",
             "request": "attach",
             "port": 9229,
+            "preLaunchTask": "func: host start",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch Static Web App",
+            "configurations": [
+                "Attach to Node Functions",
+                "Launch Chrome"
+            ],
+            "stopAll": true,
             "preLaunchTask": "swa start"
         }
     ]
