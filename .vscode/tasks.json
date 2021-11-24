@@ -1,9 +1,42 @@
 {
 	"version": "2.0.0",
 	"tasks": [
+		// for build
 		{
-			"type": "func",
-			"command": "host start",
+			"type": "shell",
+			"label": "npm run build",
+			"command": "npm run build",
+			"dependsOn": "npm install (for app)",
+		},
+		// for run
+		{
+			"type": "shell",
+			"label": "swa start",
+			"command": "npm run swa -- dist --api-location api",
+			"isBackground": true,
+			"problemMatcher": {
+				"owner": "custom",
+				"pattern": {
+					"regexp": "^$"
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^.*Using dev server for static content .*$",
+					"endsPattern": "^.*Azure Static Web Apps emulator started.*$"
+				}
+			},
+			"dependsOn": [
+				"npm run build",
+				"func start"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"type": "shell",
+			"label": "func start",
+			"command": "func start",
 			"problemMatcher": "$func-node-watch",
 			"isBackground": true,
 			"dependsOn": "npm install (functions)",
@@ -11,6 +44,7 @@
 				"cwd": "${workspaceFolder}/api"
 			}
 		},
+		// for install
 		{
 			"type": "shell",
 			"label": "npm install (functions)",

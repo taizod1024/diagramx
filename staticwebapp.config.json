@@ -5,11 +5,11 @@
     "routes": [
         {
             "route": "/login",
-            "rewrite": "/.auth/login/github"
+            "redirect": "/.auth/login/github"
         },
         {
             "route": "/logout",
-            "rewrite": "/.auth/logout"
+            "redirect": "/.auth/logout"
         },
         {
             "route": "/admin.html",
