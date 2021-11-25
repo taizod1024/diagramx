@@ -38,6 +38,7 @@
                 "debug swa",
                 "debug api"
             ],
+            "preLaunchTask": "swa stop"
         }
     ]
 }
