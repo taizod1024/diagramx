@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "swa" : "swa start"
+    "swa": "swa start"
   },
   "dependencies": {
     "core-js": "^3.6.4",
