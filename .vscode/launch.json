@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "debug api",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "preLaunchTask": "api start",
+            "presentation": {
+                "hidden": true,
+                "group": "",
+                "order": 1
+            }
+        },
+        {
             "name": "debug swa",
             "request": "launch",
             "type": "pwa-chrome",
@@ -17,26 +29,14 @@
             },
             "preLaunchTask": "swa start",
             "postDebugTask": "swa stop"
-        },
-        {
-            "name": "debug api",
-            "type": "node",
-            "request": "attach",
-            "port": 9229,
-            "preLaunchTask": "api start",
-            "presentation": {
-                "hidden": true,
-                "group": "",
-                "order": 1
-            }
         }
     ],
     "compounds": [
         {
             "name": "debug app",
             "configurations": [
-                "debug swa",
-                "debug api"
+                "debug api",
+                "debug swa"
             ],
             "preLaunchTask": "swa stop"
         }
