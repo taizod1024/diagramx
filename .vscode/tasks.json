@@ -19,7 +19,7 @@
 					"background": {
 						"activeOnStart": true,
 						"beginsPattern": ".",
-						"endsPattern": "Waiting for .+7071 to be ready",
+						"endsPattern": "App running at:",
 					}
 				}
 			],
