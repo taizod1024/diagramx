@@ -4,7 +4,7 @@
 		{
 			"label": "swa start",
 			"type": "shell",
-			"command": "swa start dist --api-location http://localhost:7071 --run \"npm run serve\"",
+			"command": "swa start http://localhost:8080 --api-location http://localhost:7071 --run \"npm run serve\"",
 			"isBackground": true,
 			"problemMatcher": [
 				{
