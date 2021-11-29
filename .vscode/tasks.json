@@ -2,47 +2,13 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "swa start",
-			"type": "shell",
-			"command": "swa start http://localhost:8080 --api-location http://localhost:7071 --run \"npm run serve\"",
-			"isBackground": true,
-			"problemMatcher": [
-				{
-					"pattern": [
-						{
-							"regexp": ".",
-							"file": 1,
-							"location": 2,
-							"message": 3
-						}
-					],
-					"background": {
-						"activeOnStart": true,
-						"beginsPattern": ".",
-						"endsPattern": "App running at:",
-					}
-				}
-			],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-		},
-		{
-			"label": "swa stop",
-			"type": "shell",
-			"command": "echo ${input:terminate}"
-		},
-		{
-			"label": "api start",
 			"type": "func",
 			"command": "host start",
 			"problemMatcher": "$func-node-watch",
 			"isBackground": true,
+			"dependsOn": "npm install (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/api",
-				"env": {
-					"languageWorkers__node__arguments": "--inspect=9229"
-				}
+				"cwd": "${workspaceFolder}/api"
 			}
 		},
 		{
@@ -61,14 +27,6 @@
 			"options": {
 				"cwd": "${workspaceFolder}/api"
 			}
-		}
-	],
-	"inputs": [
-		{
-			"id": "terminate",
-			"type": "command",
-			"command": "workbench.action.tasks.terminate",
-			"args": "terminateAll"
 		}
 	]
 }
