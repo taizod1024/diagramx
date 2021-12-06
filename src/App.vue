@@ -1,24 +1,27 @@
 <template>
-  <div>
-    {{ message }}
-    <hr>
-    <b-button size="sm" variant="outline-primary"> Bootstrap Button </b-button>
-    <b-button size="sm" variant="danger"> Bootstrap Button </b-button>
-    #1
-  </div>
+ <div>
+   <BootstrapTest />
+ </div>
 </template>
 
 <script>
+import BootstrapTest from './components/BootstrapTest.vue'
+ 
 export default {
-  name: "App",
-  data() {
-    return {
-      message: "",
-    };
-  },
-  async mounted() {
-    const { text } = await (await fetch("/api/message")).json();
-    this.message = text;
-  },
-};
+ name: 'App',
+ components: {
+   BootstrapTest
+ }
+}
 </script>
+
+<style>
+#app {
+ font-family: Avenir, Helvetica, Arial, sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-align: center;
+ color: #2c3e50;
+ margin-top: 60px;
+}
+</style>
