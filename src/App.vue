@@ -1,24 +1,37 @@
 <template>
   <div>
     {{ message }}
-    <hr>
-    <b-button size="sm" variant="outline-primary"> Bootstrap Button </b-button>
-    <b-button size="sm" variant="danger"> Bootstrap Button </b-button>
-    #1
+    <hr />
+    <BootstrapTest />
   </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  data() {
+import BootstrapTest from "./components/BootstrapTest.vue";
+import { defineComponent, onMounted, ref } from "vue";
+export default defineComponent({
+  components: {
+    BootstrapTest,
+  },
+  setup() {
+    let message = ref("(undefined)");
+    onMounted(() => {
+      message.value = "abc";
+    });
     return {
-      message: "",
+      message
     };
   },
-  async mounted() {
-    const { text } = await (await fetch("/api/message")).json();
-    this.message = text;
-  },
-};
+});
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
