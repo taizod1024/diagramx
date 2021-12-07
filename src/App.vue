@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import BootstrapTest from "./components/BootstrapTest.vue";
 import { defineComponent, onMounted, ref } from "vue";
 export default defineComponent({
