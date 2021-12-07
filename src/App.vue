@@ -16,7 +16,7 @@ export default defineComponent({
   setup() {
     let message = ref("(undefined)");
     onMounted(() => {
-      message = ref("abc");
+      message.value = "abc";
     });
     return {
       message
