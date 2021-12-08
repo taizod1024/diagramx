@@ -8,10 +8,11 @@
     "files.exclude": {
         "**/.git": true,
         "**/.github": true,
+        "node_modules/**": true,
+        "src/shims-vue.d.ts": true,
         ".gitignore": true,
         "*config.js": true,
         "*config.json": true,
         "package*.json": true,
-        "node_modules/**": true
     }
 }
