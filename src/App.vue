@@ -14,12 +14,13 @@ export default defineComponent({
     BootstrapTest,
   },
   setup() {
-    let message = ref("(undefined)");
-    onMounted(() => {
-      message.value = "abc";
+    let message = ref("");
+    onMounted(async () => {
+      const { text } = await (await fetch("/api/message")).json();
+      message.value = text;
     });
     return {
-      message
+      message,
     };
   },
 });
