@@ -4,5 +4,14 @@
     "azureFunctions.projectLanguage": "JavaScript",
     "azureFunctions.projectRuntime": "~3",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune (functions)"
+    "azureFunctions.preDeployTask": "npm prune (functions)",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.github": true,
+        ".gitignore": true,
+        "*config.js": true,
+        "*config.json": true,
+        "package*.json": true,
+        "node_modules/**": true
+    }
 }

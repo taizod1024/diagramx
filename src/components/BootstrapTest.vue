@@ -1,9 +1,11 @@
 <template>
- <div>
-   Bootstrap Test
-   <br>
-   <button type="button" class="btn btn-success">Success</button>
-   <button type="button" class="btn btn-danger">Danger</button>
-   <button type="button" class="btn btn-warning">Warning</button>
- </div>
+  <div>
+    Bootstrap Test
+    <br />
+    <a class="btn btn-success" href="/admin.html">Admin</a>
+|
+    <a class="btn btn-success" href="/login">login</a>
+|
+    <a class="btn btn-success" href="/logout">logout</a>
+  </div>
 </template>
