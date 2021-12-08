@@ -7,10 +7,11 @@
     "azureFunctions.preDeployTask": "npm prune (functions)",
     "files.exclude": {
         "**/.git": true,
-        "**/.*": true,
-        "**/*.json": true,
-        "**/*.config.js": true,
-        "**/*config.js": true,
+        "**/.github": true,
+        ".gitignore": true,
+        "*config.js": true,
+        "*config.json": true,
+        "package*.json": true,
         "node_modules/**": true
     }
 }

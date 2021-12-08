@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ message }}
+    <div>{{ message }}</div>
     <hr />
     <BootstrapTest />
   </div>
