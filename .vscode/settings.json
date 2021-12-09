@@ -6,13 +6,13 @@
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "npm prune (functions)",
     "files.exclude": {
-        "**/.git": true,
-        "**/.github": true,
-        "node_modules/**": true,
-        "src/shims-vue.d.ts": true,
-        ".gitignore": true,
-        "*config.js": true,
-        "*config.json": true,
-        "package*.json": true,
+        "**/.git": false,
+        "**/.github": false,
+        "node_modules/**": false,
+        "src/shims-vue.d.ts": false,
+        ".gitignore": false,
+        "*config.js": false,
+        "*config.json": false,
+        "package*.json": false
     }
 }
