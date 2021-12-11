@@ -4,7 +4,9 @@ import { defineComponent, onBeforeMount, onMounted, ref } from "vue";
 export default defineComponent({
   components: {},
   setup() {
-    let username = ref("");
+    let username = ref("*");
+    let islogin = () => username.value != "*" && username.value;
+    let isnotlogin = () => username.value != "*" && !username.value;
     onBeforeMount(async () => {
       console.log("onbeforemount");
       // const { text } = await (await fetch("/api/message")).json();
@@ -15,7 +17,9 @@ export default defineComponent({
       console.log("onmounted");
     });
     return {
-      username
+      username,
+      islogin,
+      isnotlogin
     };
   },
 });
@@ -30,9 +34,13 @@ export default defineComponent({
             <strong>diagram</strong>
           </a>
           <a href="#" class="navbar-brand d-flex align-items-right">
-            <div>{{ username }}</div>
-            <a v-if="!username" class="btn btn-primary" href="/login">ログイン</a>
-            <a v-if="username" class="btn btn-secondary" href="/logout">ログアウト</a>
+            <template v-if="isnotlogin()">
+              <a class="btn btn-primary" href="/login">ログイン</a>
+            </template>
+            <template v-if="islogin()">
+              {{ username }}&nbsp;
+              <a class="btn btn-secondary" href="/logout">ログアウト</a>
+            </template>
           </a>
         </div>
       </div>
