@@ -73,15 +73,31 @@ export default defineComponent({
                 >
                   <title>Placeholder</title>
                   <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                    Thumbnail
+                  </text>
                 </svg>
 
                 <div class="card-body">
-                  <p class="card-text">これは写真の解説文付きのカードです。自然に説明を加えることができます。しかしこの文章は少し長いかもしれません。</p>
-                  <div class="d-flex justify-content-between align-items-center">
+                  <p class="card-text">
+                    これは写真の解説文付きのカードです。自然に説明を加えることができます。しかしこの文章は少し長いかもしれません。
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">見る</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">編集</button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        見る
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        編集
+                      </button>
                     </div>
                     <small class="text-muted">9分</small>
                   </div>
