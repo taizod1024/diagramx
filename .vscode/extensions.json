@@ -1,7 +1,8 @@
 {
   "recommendations": [
+    "ms-vscode.azure-account",
     "ms-azuretools.vscode-azurefunctions",
     "ms-azuretools.vscode-azurestaticwebapps",
-    "octref.vetur"
+    "johnsoncodehk.volar"
   ]
 }
