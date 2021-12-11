@@ -1,25 +1,25 @@
 <script lang="ts">
-import { Userinfo } from "./common/UserInfo";
-import { defineComponent, onBeforeMount, onMounted, ref } from "vue";
+import { Userinfo } from './common/UserInfo';
+import { defineComponent, onBeforeMount, onMounted, ref } from 'vue';
 export default defineComponent({
   components: {},
   setup() {
-    let username = ref("*");
-    let islogin = () => username.value != "*" && username.value;
-    let isnotlogin = () => username.value != "*" && !username.value;
+    let username = ref('*');
+    let islogin = () => username.value != '*' && username.value;
+    let isnotlogin = () => username.value != '*' && !username.value;
     onBeforeMount(async () => {
-      console.log("onbeforemount");
+      console.log('onbeforemount');
       // const { text } = await (await fetch("/api/message")).json();
       await Userinfo.getUserInfoAsync();
       username.value = Userinfo.me?.userDetails;
     });
     onMounted(() => {
-      console.log("onmounted");
+      console.log('onmounted');
     });
     return {
       username,
       islogin,
-      isnotlogin
+      isnotlogin,
     };
   },
 });
