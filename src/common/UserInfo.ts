@@ -1,33 +1,56 @@
+import md5 from 'md5';
+
 /** client principal from swa */
 type ClientPrincipal = {
-  userid: string;
+  userId: string;
   userRoles: string[];
   identityProvider: string;
   userDetails: string;
 };
 
 /** user info class */
-class UserInfo {
+export class UserInfo {
   /** current user */
   me: ClientPrincipal;
+
+  /** whether user info was get or not */
+  getDone: boolean;
+
+  /** avatar url */
+  avatarUrl: string;
 
   /** constructor */
   constructor() {
     this.me = {
-      userid: '',
+      userId: "",
       userRoles: [],
-      identityProvider: '',
-      userDetails: '',
+      identityProvider: "",
+      userDetails: "",
     };
+    this.getDone = false;
+    this.avatarUrl = "";
   }
 
   /** get user info */
-  async getUserInfoAsync() {
+  async getAsync() {
     const response = await fetch('/.auth/me');
     const payload = await response.json();
     const { clientPrincipal } = payload;
-    this.me = clientPrincipal;
-    return this.me;
+    Object.assign(this.me, clientPrincipal);
+    this.getDone = true;
+    const hash = md5(this.me.userDetails.toLowerCase());
+    this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
+
   }
+
+  /** is login */
+  isLogin() {
+    return this.getDone && this.me.userDetails
+  };
+
+  /** is not login */
+  isNotLogin() {
+    return this.getDone && !this.me.userDetails;
+  }
+
 }
-export const Userinfo = new UserInfo();

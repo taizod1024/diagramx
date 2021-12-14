@@ -1,28 +1,17 @@
 <script lang="ts">
-import { Userinfo } from './common/UserInfo';
-import { defineComponent, onBeforeMount, onMounted, ref } from 'vue';
+import './common/UserInfo';
+import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { UserInfo } from './common/UserInfo';
 export default defineComponent({
   components: {},
   setup() {
-    let username = ref('*');
-    let provider = ref('');
-    let islogin = () => username.value != '*' && username.value;
-    let isnotlogin = () => username.value != '*' && !username.value;
+    const userinfo = reactive(new UserInfo());
     onBeforeMount(async () => {
-      console.log('onbeforemount');
+      await userinfo.getAsync();
       // const { text } = await (await fetch("/api/message")).json();
-      await Userinfo.getUserInfoAsync();
-      username.value = Userinfo.me?.userDetails;
-      provider.value = Userinfo.me?.identityProvider;
-    });
-    onMounted(() => {
-      console.log('onmounted');
     });
     return {
-      username,
-      provider,
-      islogin,
-      isnotlogin,
+      userinfo,
     };
   },
 });
@@ -31,9 +20,9 @@ export default defineComponent({
 <template>
   <div>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">ナビゲーションバー</a>
+          <a class="navbar-brand">brand</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -46,23 +35,30 @@ export default defineComponent({
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" aria-current="page" href="#">ホーム</a>
+                <a class="nav-link" aria-current="page" href="#">home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">リンク</a>
+                <a class="nav-link" href="#">about</a>
               </li>
-              <template v-if="isnotlogin()">
+            </ul>
+          </div>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav mr-auto">
+              <template v-if="userinfo.isNotLogin()">
                 <li class="nav-item ml-auto">
-                  <a class="nav-link" aria-current="page" href="/login"
+                  <a
+                    class="btn btn-outline-light"
+                    aria-current="page"
+                    href="/login"
                     >sign in</a
                   >
                 </li>
               </template>
-              <template v-if="islogin()">
-                <li class="nav-item dropdown ml-auto">
+              <template v-if="userinfo.isLogin()">
+                <li class="nav-item dropdown">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -70,15 +66,21 @@ export default defineComponent({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {{ username }}
+                    <img
+                      :src="userinfo.avatarUrl"
+                      style="border-radius: 50%; width: 20px; height: 20px"
+                    />
                   </a>
 
-                  <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdown02"
+                  >
                     <li>
-                      <a class="dropdown-item disabled" href="#"
-                        >Signed in as <b>{{ username }}</b> on
-                        <b> {{ provider }}</b>
-                      </a>
+                      <span class="dropdown-item-text"
+                        >Signed in as <b>{{ userinfo.me.userDetails }}</b> on
+                        <b> {{ userinfo.me.identityProvider }}</b>
+                      </span>
                     </li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item" href="#">action</a></li>
@@ -103,7 +105,7 @@ export default defineComponent({
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">diagram</h1>
-            <p class="lead text-muted">オンライン図形描画サービス</p>
+            <p class="lead text-muted">online diagram service</p>
           </div>
         </div>
       </section>
