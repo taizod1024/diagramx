@@ -5,6 +5,7 @@ export default defineComponent({
   components: {},
   setup() {
     let username = ref('*');
+    let provider = ref('');
     let islogin = () => username.value != '*' && username.value;
     let isnotlogin = () => username.value != '*' && !username.value;
     onBeforeMount(async () => {
@@ -12,12 +13,14 @@ export default defineComponent({
       // const { text } = await (await fetch("/api/message")).json();
       await Userinfo.getUserInfoAsync();
       username.value = Userinfo.me?.userDetails;
+      provider.value = Userinfo.me?.identityProvider;
     });
     onMounted(() => {
       console.log('onmounted');
     });
     return {
       username,
+      provider,
       islogin,
       isnotlogin,
     };
@@ -28,22 +31,71 @@ export default defineComponent({
 <template>
   <div>
     <header>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-          <a href="#" class="navbar-brand d-flex align-items-left">
-            <strong>diagram</strong>
-          </a>
-          <a href="#" class="navbar-brand d-flex align-items-right">
-            <template v-if="isnotlogin()">
-              <a class="btn btn-primary" href="/login">ログイン</a>
-            </template>
-            <template v-if="islogin()">
-              {{ username }}&nbsp;
-              <a class="btn btn-secondary" href="/logout">ログアウト</a>
-            </template>
-          </a>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">ナビゲーションバー</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="#">ホーム</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">リンク</a>
+              </li>
+              <template v-if="isnotlogin()">
+                <li class="nav-item ml-auto">
+                  <a class="nav-link" aria-current="page" href="/login"
+                    >sign in</a
+                  >
+                </li>
+              </template>
+              <template v-if="islogin()">
+                <li class="nav-item dropdown ml-auto">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="dropdown02"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{ username }}
+                  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                    <li>
+                      <a class="dropdown-item disabled" href="#"
+                        >Signed in as <b>{{ username }}</b> on
+                        <b> {{ provider }}</b>
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">action</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">more action ...</a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a class="dropdown-item" href="/logout">sign out</a>
+                    </li>
+                  </ul>
+                </li>
+              </template>
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
     <main>
