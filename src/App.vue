@@ -77,9 +77,10 @@ export default defineComponent({
                     aria-labelledby="dropdown02"
                   >
                     <li>
-                      <span class="dropdown-item-text"
-                        >Signed in as <b>{{ userinfo.me.userDetails }}</b> on
-                        <b> {{ userinfo.me.identityProvider }}</b>
+                      <span class="dropdown-item-text" style="min-width: 250px"
+                        >Signed in to
+                        <b> {{ userinfo.me.identityProvider }}</b> as
+                        <b>{{ userinfo.me.userDetails }}</b>
                       </span>
                     </li>
                     <li><hr class="dropdown-divider" /></li>
