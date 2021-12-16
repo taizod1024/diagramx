@@ -1,19 +1,27 @@
 {
-    "navigationFallback": {
-        "rewrite": "/index.html"
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "routes": [
+    {
+      "route": "/login/github",
+      "rewrite": "/.auth/login/github"
     },
-    "routes": [
-        {
-            "route": "/login",
-            "rewrite": "/.auth/login/github"
-        },
-        {
-            "route": "/logout",
-            "rewrite": "/.auth/logout"
-        },
-        {
-            "route": "/admin.html",
-            "allowedRoles": ["authenticated"]
-        }
-    ]
+    {
+      "route": "/login/twitter",
+      "rewrite": "/.auth/login/twitter"
+    },
+    {
+      "route": "/login/google",
+      "rewrite": "/.auth/login/google"
+    },
+    {
+      "route": "/logout",
+      "rewrite": "/.auth/logout"
+    },
+    {
+      "route": "/admin.html",
+      "allowedRoles": ["authenticated"]
+    }
+  ]
 }
