@@ -1,6 +1,7 @@
 {
-  "name": "hello",
-  "version": "0.1.0",
+  "name": "diagram",
+  "version": "0.0.0",
+  "description": "app for diagram",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

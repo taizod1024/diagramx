@@ -22,7 +22,7 @@ export default defineComponent({
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand">brand</a>
+          <a class="navbar-brand">diagram</a>
           <button
             class="navbar-toggler"
             type="button"
