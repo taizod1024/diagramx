@@ -22,17 +22,17 @@ export class UserInfo {
   /** constructor */
   constructor() {
     this.me = {
-      userId: "",
+      userId: '',
       userRoles: [],
-      identityProvider: "",
-      userDetails: "",
+      identityProvider: '',
+      userDetails: '',
     };
     this.getDone = false;
-    this.avatarUrl = "";
+    this.avatarUrl = '';
   }
 
   /** get user info */
-  async getAsync() {
+  async getAsync(): Promise<void> {
     const response = await fetch('/.auth/me');
     const payload = await response.json();
     const { clientPrincipal } = payload;
@@ -40,17 +40,15 @@ export class UserInfo {
     this.getDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
-
   }
 
   /** is login */
-  isLogin() {
-    return this.getDone && this.me.userDetails
-  };
-
-  /** is not login */
-  isNotLogin() {
-    return this.getDone && !this.me.userDetails;
+  isLogin(): boolean {
+    return Boolean(this.getDone && this.me.userDetails);
   }
 
+  /** is not login */
+  isNotLogin(): boolean {
+    return Boolean(this.getDone && !this.me.userDetails);
+  }
 }
