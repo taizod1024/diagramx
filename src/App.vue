@@ -71,10 +71,15 @@ export default defineComponent({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img
-                      :src="userinfo.avatarUrl"
-                      style="border-radius: 50%; width: 20px; height: 20px"
-                    />
+                    <template v-if="userinfo.isEmail()">
+                      <img
+                        :src="userinfo.avatarUrl"
+                        style="border-radius: 50%; width: 20px; height: 20px"
+                      />
+                    </template>
+                    <template v-else>
+                      {{ userinfo.displayName }}
+                    </template>
                   </a>
 
                   <ul
