@@ -58,7 +58,7 @@ export default defineComponent({
                     class="btn btn-secondary"
                     aria-current="page"
                     href="/login/github"
-                    style="width: 128px; margin: 1px"
+                    style="width: 144px; margin: 1px"
                     >sign in github</a
                   >
                 </li>
@@ -67,7 +67,7 @@ export default defineComponent({
                     class="btn btn-primary"
                     aria-current="page"
                     href="/login/twitter"
-                    style="width: 128px; margin: 1px"
+                    style="width: 144px; margin: 1px"
                     >sign in twitter</a
                   >
                 </li>
@@ -76,7 +76,7 @@ export default defineComponent({
                     class="btn btn-danger"
                     aria-current="page"
                     href="/login/google"
-                    style="width: 128px; margin: 1px"
+                    style="width: 144px; margin: 1px"
                     >sign in google</a
                   >
                 </li>
