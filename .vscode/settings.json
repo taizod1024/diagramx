@@ -1,18 +1,11 @@
 {
-    "azureFunctions.deploySubpath": "api",
-    "azureFunctions.postDeployTask": "npm install (functions)",
-    "azureFunctions.projectLanguage": "JavaScript",
-    "azureFunctions.projectRuntime": "~3",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "npm prune (functions)",
-    "files.exclude": {
-        "**/.git": false,
-        "**/.github": false,
-        "node_modules/**": false,
-        "src/shims-vue.d.ts": false,
-        ".gitignore": false,
-        "*config.js": false,
-        "*config.json": false,
-        "package*.json": false
-    }
+  "azureFunctions.deploySubpath": "api",
+  "azureFunctions.postDeployTask": "npm install (functions)",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~3",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "npm prune (functions)",
+  "css.styleSheets": [
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+  ]
 }
