@@ -27,30 +27,33 @@ export default defineComponent({
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault"
-            aria-expanded="false"
+            data-bs-target="#bdNavbar"
+            aria-controls="bdNavbar"
+            aria-expanded="true"
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+          <div class="collapse navbar-collapse" id="bdNavbar">
+            <ul class="navbar-nav flex-row flex-wrap mr-auto">
+              <li class="nav-item col-12 col-md-auto">
                 <router-link to="/" class="nav-link" aria-current="page"
                   >Home</router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-12 col-md-auto">
                 <router-link to="/about" class="nav-link">About</router-link>
               </li>
             </ul>
           </div>
-          <div class="collapse navbar-collapse justify-content-end">
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="bdNavbar"
+          >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <li class="nav-item ml-auto">
+                <li class="nav-item col-12 col-md-auto">
                   <a
                     class="btn btn-outline-light"
                     aria-current="page"
@@ -60,7 +63,7 @@ export default defineComponent({
                 </li>
               </template>
               <template v-if="userinfo.isLogin()">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown col-12 col-md-auto">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
