@@ -19,6 +19,9 @@ export class UserInfo {
   /** avatar url */
   avatarUrl: string;
 
+  /** display name */
+  displayName: string;
+
   /** constructor */
   constructor() {
     this.me = {
@@ -29,6 +32,7 @@ export class UserInfo {
     };
     this.getDone = false;
     this.avatarUrl = '';
+    this.displayName = '';
   }
 
   /** get user info */
@@ -40,6 +44,7 @@ export class UserInfo {
     this.getDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
+    this.displayName = this.isEmail() ? this.me.userDetails : (this.me.identityProvider + " / " + this.me.userDetails);
   }
 
   /** is login */
@@ -50,5 +55,10 @@ export class UserInfo {
   /** is not login */
   isNotLogin(): boolean {
     return Boolean(this.getDone && !this.me.userDetails);
+  }
+
+  /** is email */
+  isEmail(): boolean {
+    return Boolean(this.getDone && this.me.userDetails.match(/@/));
   }
 }

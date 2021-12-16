@@ -55,10 +55,29 @@ export default defineComponent({
               <template v-if="userinfo.isNotLogin()">
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-outline-light"
+                    class="btn btn-secondary"
                     aria-current="page"
-                    href="/login"
-                    >sign in</a
+                    href="/login/github"
+                    style="width: 128px; margin: 1px"
+                    >sign in github</a
+                  >
+                </li>
+                <li class="nav-item col-12 col-md-auto">
+                  <a
+                    class="btn btn-primary"
+                    aria-current="page"
+                    href="/login/twitter"
+                    style="width: 128px; margin: 1px"
+                    >sign in twitter</a
+                  >
+                </li>
+                <li class="nav-item col-12 col-md-auto">
+                  <a
+                    class="btn btn-danger"
+                    aria-current="page"
+                    href="/login/google"
+                    style="width: 128px; margin: 1px"
+                    >sign in google</a
                   >
                 </li>
               </template>
@@ -71,10 +90,16 @@ export default defineComponent({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img
-                      :src="userinfo.avatarUrl"
-                      style="border-radius: 50%; width: 20px; height: 20px"
-                    />
+                    <template v-if="userinfo.isEmail()">
+                      <img
+                        :src="userinfo.avatarUrl"
+                        :title="userinfo.displayName"
+                        style="border-radius: 50%; width: 20px; height: 20px"
+                      />
+                    </template>
+                    <template v-else>
+                      {{ userinfo.displayName }}
+                    </template>
                   </a>
 
                   <ul
