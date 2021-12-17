@@ -2,7 +2,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.ts',
-      title: 'diagram0',
+      title: 'diagramx',
     },
   },
   configureWebpack: {
