@@ -1,16 +1,19 @@
 <script lang="ts">
 import './common/UserInfo';
 import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { AppInfo } from './common/AppInfo';
 import { UserInfo } from './common/UserInfo';
 export default defineComponent({
   components: {},
   setup() {
+    const appinfo = reactive(new AppInfo());
     const userinfo = reactive(new UserInfo());
     onBeforeMount(async () => {
       await userinfo.getAsync();
       // const { text } = await (await fetch("/api/message")).json();
     });
     return {
+      appinfo,
       userinfo,
     };
   },
@@ -22,7 +25,7 @@ export default defineComponent({
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand">diagram</a>
+          <a class="navbar-brand">{{ appinfo.appname }}</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -39,12 +42,16 @@ export default defineComponent({
             <ul class="navbar-nav flex-row flex-wrap mr-auto">
               <li class="nav-item col-12 col-md-auto">
                 <router-link to="/" class="nav-link" aria-current="page"
-                  >Home</router-link
+                  >all diagrams</router-link
                 >
               </li>
-              <li class="nav-item col-12 col-md-auto">
-                <router-link to="/about" class="nav-link">About</router-link>
-              </li>
+              <template v-if="userinfo.isLogin()">
+                <li class="nav-item col-12 col-md-auto">
+                  <router-link to="/user" class="nav-link"
+                    >your diagrams</router-link
+                  >
+                </li>
+              </template>
             </ul>
           </div>
           <div
@@ -55,7 +62,7 @@ export default defineComponent({
               <template v-if="userinfo.isNotLogin()">
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-secondary"
+                    class="btn btn-secondary btn-sm"
                     aria-current="page"
                     href="/login/github"
                     style="width: 144px; margin: 1px"
@@ -64,7 +71,7 @@ export default defineComponent({
                 </li>
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-sm"
                     aria-current="page"
                     href="/login/twitter"
                     style="width: 144px; margin: 1px"
@@ -73,7 +80,7 @@ export default defineComponent({
                 </li>
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     aria-current="page"
                     href="/login/google"
                     style="width: 144px; margin: 1px"
@@ -86,7 +93,25 @@ export default defineComponent({
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
-                    id="dropdown02"
+                    id="dropdown-new"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    +
+                  </a>
+
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdown-new"
+                  >
+                    <li><a class="dropdown-item" href="#">new diagram</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown col-12 col-md-auto">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="dropdown-profile"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
@@ -94,7 +119,7 @@ export default defineComponent({
                       <img
                         :src="userinfo.avatarUrl"
                         :title="userinfo.displayName"
-                        style="border-radius: 50%; width: 20px; height: 20px"
+                        style="border-radius: 50%; width: 24px; height: 24px"
                       />
                     </template>
                     <template v-else>
@@ -104,19 +129,14 @@ export default defineComponent({
 
                   <ul
                     class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="dropdown02"
+                    aria-labelledby="dropdown-profile"
                   >
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
-                        >Signed in to
+                        >signed in to
                         <b> {{ userinfo.me.identityProvider }}</b> as
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
-                    </li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#">action</a></li>
-                    <li>
-                      <a class="dropdown-item" href="#">more action ...</a>
                     </li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
@@ -138,7 +158,12 @@ export default defineComponent({
     <footer class="text-muted py-5">
       <div class="container">
         <p class="float-end mb-1">
-          <a href="#">トップに戻る</a>
+          <a href="#">back to top</a>
+        </p>
+        <p class="mb-0">
+          {{ appinfo.appname }}
+          | <a :href="appinfo.author">author</a> |
+          <a :href="appinfo.repository">repository</a>
         </p>
       </div>
     </footer>
