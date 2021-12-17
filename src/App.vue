@@ -62,7 +62,7 @@ export default defineComponent({
               <template v-if="userinfo.isNotLogin()">
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-secondary"
+                    class="btn btn-secondary btn-sm"
                     aria-current="page"
                     href="/login/github"
                     style="width: 144px; margin: 1px"
@@ -71,7 +71,7 @@ export default defineComponent({
                 </li>
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-sm"
                     aria-current="page"
                     href="/login/twitter"
                     style="width: 144px; margin: 1px"
@@ -80,7 +80,7 @@ export default defineComponent({
                 </li>
                 <li class="nav-item col-12 col-md-auto">
                   <a
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-sm"
                     aria-current="page"
                     href="/login/google"
                     style="width: 144px; margin: 1px"
