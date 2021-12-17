@@ -39,11 +39,11 @@ export default defineComponent({
             <ul class="navbar-nav flex-row flex-wrap mr-auto">
               <li class="nav-item col-12 col-md-auto">
                 <router-link to="/" class="nav-link" aria-current="page"
-                  >Home</router-link
+                  >home</router-link
                 >
               </li>
               <li class="nav-item col-12 col-md-auto">
-                <router-link to="/about" class="nav-link">About</router-link>
+                <router-link to="/about" class="nav-link">about</router-link>
               </li>
             </ul>
           </div>
@@ -108,7 +108,7 @@ export default defineComponent({
                   >
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
-                        >Signed in to
+                        >signed in to
                         <b> {{ userinfo.me.identityProvider }}</b> as
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
@@ -138,8 +138,9 @@ export default defineComponent({
     <footer class="text-muted py-5">
       <div class="container">
         <p class="float-end mb-1">
-          <a href="#">トップに戻る</a>
+          <a href="#">back to top</a>
         </p>
+        <p class="mb-0">diagram service</p>
       </div>
     </footer>
   </div>
