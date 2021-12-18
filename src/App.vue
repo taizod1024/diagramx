@@ -1,6 +1,6 @@
 <script lang="ts">
 import './common/UserInfo';
-import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { AppInfo } from './common/AppInfo';
 import { UserInfo } from './common/UserInfo';
 export default defineComponent({
@@ -8,13 +8,15 @@ export default defineComponent({
   setup() {
     const appinfo = reactive(new AppInfo());
     const userinfo = reactive(new UserInfo());
+    const text = ref('');
     onBeforeMount(async () => {
       await userinfo.getAsync();
-      // const { text } = await (await fetch("/api/message")).json();
+      text.value = await (await fetch('/api/message')).json();
     });
     return {
       appinfo,
       userinfo,
+      text,
     };
   },
 });
@@ -152,6 +154,7 @@ export default defineComponent({
     </header>
 
     <main>
+      <p>debug: {{ text }}</p>
       <router-view />
     </main>
 
