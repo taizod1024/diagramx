@@ -89,6 +89,15 @@ export default defineComponent({
                     >sign in google</a
                   >
                 </li>
+                <li class="nav-item col-12 col-md-auto">
+                  <a
+                    class="btn btn-success btn-sm"
+                    aria-current="page"
+                    href="/login/facebook"
+                    style="width: 144px; margin: 1px"
+                    >sign in facebook</a
+                  >
+                </li>
               </template>
               <template v-if="userinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
