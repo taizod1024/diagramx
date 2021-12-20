@@ -62,41 +62,35 @@ export default defineComponent({
           >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <li class="nav-item col-12 col-md-auto">
+                <li class="nav-item dropdown col-12 col-md-auto">
                   <a
-                    class="btn btn-secondary btn-sm"
-                    aria-current="page"
-                    href="/login/github"
-                    style="width: 144px; margin: 1px"
-                    >sign in github</a
+                    class="dropdown-toggle btn btn-outline-light btn-sm"
+                    href="#"
+                    id="dropdown-profile"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    >sign in with ...
+                  </a>
+
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdown-profile"
                   >
-                </li>
-                <li class="nav-item col-12 col-md-auto">
-                  <a
-                    class="btn btn-primary btn-sm"
-                    aria-current="page"
-                    href="/login/twitter"
-                    style="width: 144px; margin: 1px"
-                    >sign in twitter</a
-                  >
-                </li>
-                <li class="nav-item col-12 col-md-auto">
-                  <a
-                    class="btn btn-danger btn-sm"
-                    aria-current="page"
-                    href="/login/google"
-                    style="width: 144px; margin: 1px"
-                    >sign in google</a
-                  >
-                </li>
-                <li class="nav-item col-12 col-md-auto">
-                  <a
-                    class="btn btn-success btn-sm"
-                    aria-current="page"
-                    href="/login/facebook"
-                    style="width: 144px; margin: 1px"
-                    >sign in facebook</a
-                  >
+                    <li>
+                      <a class="dropdown-item" href="/login/github">github</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/login/twitter">twitter</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/login/google">google</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/login/facebook"
+                        >facebook</a
+                      >
+                    </li>
+                  </ul>
                 </li>
               </template>
               <template v-if="userinfo.isLogin()">
@@ -144,7 +138,7 @@ export default defineComponent({
                   >
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
-                        >signed in to
+                        >signed in with
                         <b> {{ userinfo.me.identityProvider }}</b> as
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
