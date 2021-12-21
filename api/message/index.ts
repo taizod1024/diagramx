@@ -1,10 +1,13 @@
 import { AzureFunction } from '@azure/functions'
+import { UserInfo } from '../common/UserInfo';
 
 const httpTrigger: AzureFunction = async function (context) {
+  const userinfo = new UserInfo();
+  await userinfo.getAsync(context);
   context.res = {
     headers: { "Content-Type": "application/json", },
     body: {
-      text: 'Hello from the API(ts)',
+      text: `Hello from the API(${userinfo.displayName})`,
     }
   };
 }

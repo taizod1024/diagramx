@@ -1,8 +1,7 @@
 <script lang="ts">
-import './common/UserInfo';
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
-import { AppInfo } from './common/AppInfo';
-import { UserInfo } from './common/UserInfo';
+import { AppInfo } from '../api/common/AppInfo';
+import { UserInfo } from '../api/common/UserInfo';
 export default defineComponent({
   components: {},
   setup() {
@@ -64,7 +63,7 @@ export default defineComponent({
               <template v-if="userinfo.isNotLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
                   <a
-                    class="dropdown-toggle btn btn-outline-light btn-sm"
+                    class="dropdown-toggle btn btn-outline-light"
                     href="#"
                     id="dropdown-profile"
                     data-bs-toggle="dropdown"
@@ -109,7 +108,7 @@ export default defineComponent({
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="dropdown-new"
                   >
-                    <li><a class="dropdown-item" href="#">new diagram</a></li>
+                    <li><a class="dropdown-item" href="#">+ new diagram</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown col-12 col-md-auto">
