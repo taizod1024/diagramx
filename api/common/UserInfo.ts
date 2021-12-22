@@ -1,12 +1,5 @@
 import md5 from 'md5';
-
-/** client principal from swa */
-type ClientPrincipal = {
-  userId: string;
-  userRoles: string[];
-  identityProvider: string;
-  userDetails: string;
-};
+import { ClientPrincipal } from './ClientPrincipal';
 
 /** user info class */
 export class UserInfo {
@@ -14,7 +7,7 @@ export class UserInfo {
   me: ClientPrincipal;
 
   /** whether user info was get or not */
-  getDone: boolean;
+  isGetDone: boolean;
 
   /** avatar url */
   avatarUrl: string;
@@ -30,18 +23,34 @@ export class UserInfo {
       identityProvider: '',
       userDetails: '',
     };
-    this.getDone = false;
+    this.isGetDone = false;
     this.avatarUrl = '';
     this.displayName = '';
   }
 
-  /** get user info */
+  /** get user info on client */
   async getAsync(): Promise<void> {
     const response = await fetch('/.auth/me');
     const payload = await response.json();
     const { clientPrincipal } = payload;
     Object.assign(this.me, clientPrincipal);
-    this.getDone = true;
+    this.getDone();
+  }
+
+  /** get user info on server */
+  get(context: any) {
+    const header = context.req?.headers['x-ms-client-principal'];
+    if (!header) return;
+    const encoded = Buffer.from(header, 'base64');
+    const decoded = encoded.toString('ascii');
+    const clientPrincipal = JSON.parse(decoded);
+    Object.assign(this.me, clientPrincipal);
+    this.getDone();
+  }
+
+  /** get done */
+  getDone() {
+    this.isGetDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
     this.displayName = this.isEmail() ? this.me.userDetails : (this.me.identityProvider + " / " + this.me.userDetails);
@@ -49,16 +58,16 @@ export class UserInfo {
 
   /** is login */
   isLogin(): boolean {
-    return Boolean(this.getDone && this.me.userDetails);
+    return Boolean(this.isGetDone && this.me.userDetails);
   }
 
   /** is not login */
   isNotLogin(): boolean {
-    return Boolean(this.getDone && !this.me.userDetails);
+    return Boolean(this.isGetDone && !this.me.userDetails);
   }
 
   /** is email */
   isEmail(): boolean {
-    return Boolean(this.getDone && this.me.userDetails.match(/@/));
+    return Boolean(this.isGetDone && this.me.userDetails.match(/@/));
   }
 }
