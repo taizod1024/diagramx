@@ -1,17 +1,13 @@
 import { AzureFunction } from '@azure/functions'
+import { UserInfo } from '../common/UserInfo';
 
 const httpTrigger: AzureFunction = async function (context) {
-  const header = context.req?.headers['x-ms-client-principal'];
-  let userDetails = "no signed in";
-  if (header) {
-    const encoded = Buffer.from(header, 'base64');
-    const decoded = encoded.toString('ascii');
-    userDetails = JSON.parse(decoded).userDetails;
-  }
+  const userinfo = new UserInfo();
+  userinfo.get(context);
   context.res = {
     headers: { "Content-Type": "application/json", },
     body: {
-      text: `Hello from the API(${userDetails})`,
+      text: `Hello from the API(${userinfo.displayName})`,
     }
   };
 }
