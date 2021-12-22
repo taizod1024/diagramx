@@ -36,19 +36,10 @@ export class UserInfo {
   }
 
   /** get user info */
-  async getAsync(context?: any): Promise<void> {
-    let clientPrincipal;
-    if (!context) {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      clientPrincipal = payload.clientPrincipal;
-    } else {
-      const header = context.req.headers['x-ms-client-principal'];
-      if (!header) return;
-      const encoded = Buffer.from(header, 'base64');
-      const decoded = encoded.toString('ascii');
-      clientPrincipal = JSON.parse(decoded);
-    }
+  async getAsync(): Promise<void> {
+    const response = await fetch('/.auth/me');
+    const payload = await response.json();
+    const { clientPrincipal } = payload;
     Object.assign(this.me, clientPrincipal);
     this.getDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
-import { AppInfo } from '../api/common/AppInfo';
-import { UserInfo } from '../api/common/UserInfo';
+import { AppInfo } from './common/AppInfo';
+import { UserInfo } from './common/UserInfo';
 export default defineComponent({
   components: {},
   setup() {
