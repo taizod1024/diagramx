@@ -53,7 +53,9 @@ export class UserInfo {
     this.isGetDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
-    this.displayName = this.isEmail() ? this.me.userDetails : (this.me.identityProvider + " / " + this.me.userDetails);
+    this.displayName = this.isEmail()
+      ? this.me.userDetails
+      : this.me.identityProvider + ' / ' + this.me.userDetails;
   }
 
   /** is login */
