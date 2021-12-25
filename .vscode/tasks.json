@@ -6,30 +6,9 @@
       "command": "host start",
       "problemMatcher": "$func-node-watch",
       "isBackground": true,
-      "dependsOn": ["npm build (functions)", "azurite"],
+      "dependsOn": "npm build (functions)",
       "options": {
         "cwd": "${workspaceFolder}/api"
-      }
-    },
-    {
-      "type": "shell",
-      "label": "azurite",
-      "command": "azurite -l .azurite",
-      "problemMatcher": {
-        "owner": "custom",
-        "pattern": {
-          "regexp": "(.*error.*)",
-          "message": 0
-        },
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": "^Azurite Blob service is starting at",
-          "endsPattern": "^Azurite Table service is successfully listening at"
-        }
-      },
-      "isBackground": true,
-      "options": {
-        "cwd": "${workspaceFolder}"
       }
     },
     {
