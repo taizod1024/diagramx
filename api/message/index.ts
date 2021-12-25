@@ -1,6 +1,6 @@
 import { AzureFunction } from '@azure/functions';
 import { UserInfo } from '../common/UserInfo';
-import azurestorage from 'azure-storage';
+// import azurestorage from 'azure-storage';
 
 const httpTrigger: AzureFunction = async function (context) {
   try {
