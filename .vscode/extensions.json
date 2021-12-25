@@ -6,6 +6,7 @@
     "johnsoncodehk.volar",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "ecmel.vscode-html-css"
+    "ecmel.vscode-html-css",
+    "azurite.azurite"
   ]
 }
