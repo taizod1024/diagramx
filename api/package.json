@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@azure/storage-file-datalake": "^12.7.0",
-    "azure-storage": "^2.10.6"
+    "azure-storage": "^2.10.6",
+    "md5": "^2.3.0"
   }
 }
