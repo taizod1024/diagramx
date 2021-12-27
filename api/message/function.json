@@ -14,7 +14,7 @@
     }
   ],
   "scriptFile": "../dist/message/index.js",
-  "logging": {
+  "xx_logging": {
     "applicationInsights": {
       "samplingSettings": {
         "isEnabled": true
