@@ -1,26 +1,26 @@
 import { AzureFunction } from '@azure/functions';
 import { UserInfo } from '../common/UserInfo';
-// import azurestorage from 'azure-storage';
+import azurestorage from 'azure-storage';
 
 const httpTrigger: AzureFunction = async function (context) {
   context.log('aaa_begin');
   let info: any = {};
-  // // table storage
-  // let tableservice = azurestorage.createTableService();
-  // tableservice.createTableIfNotExists(
-  //   'diagramt',
-  //   function (error, result, response) {
-  //     info.tableerror = error;
-  //   }
-  // );
-  // // blob storage
-  // let blobservice = azurestorage.createBlobService();
-  // blobservice.createContainerIfNotExists(
-  //   'diagramb',
-  //   function (error, result, response) {
-  //     info.bloberror = error;
-  //   }
-  // );
+  // table storage
+  let tableservice = azurestorage.createTableService();
+  tableservice.createTableIfNotExists(
+    'diagramt',
+    function (error, result, response) {
+      info.tableerror = error;
+    }
+  );
+  // blob storage
+  let blobservice = azurestorage.createBlobService();
+  blobservice.createContainerIfNotExists(
+    'diagramb',
+    function (error, result, response) {
+      info.bloberror = error;
+    }
+  );
   // response
   const userinfo = new UserInfo();
   userinfo.get(context);
@@ -32,7 +32,7 @@ const httpTrigger: AzureFunction = async function (context) {
     },
   };
   context.log('aaa_end');
-  throw 'aaa_error';
+  // throw 'aaa_error';
 };
 
 export default httpTrigger;
