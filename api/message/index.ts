@@ -32,7 +32,7 @@ const httpTrigger: AzureFunction = async function (context) {
     },
   };
   context.log('aaa_end');
-  // throw 'aaa_error';
+  throw 'aaa_error';
 };
 
 export default httpTrigger;
