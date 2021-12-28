@@ -1,5 +1,5 @@
 {
-  "name": "diagram-api",
+  "name": "diagramx-api",
   "version": "0.0.0",
   "description": "api for diagram",
   "scripts": {
@@ -17,7 +17,6 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@azure/storage-file-datalake": "^12.7.0",
-    "azure-storage": "^2.10.6"
+    "@azure/storage-file-datalake": "^12.7.0"
   }
 }
