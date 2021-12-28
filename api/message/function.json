@@ -13,12 +13,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/message/index.js",
-  "logging": {
-    "applicationInsights": {
-      "samplingSettings": {
-        "isEnabled": true
-      }
-    }
-  }
+  "scriptFile": "../dist/message/index.js"
 }
