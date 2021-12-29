@@ -22,8 +22,8 @@ const httpTrigger: AzureFunction = async function (context) {
     }
   );
   // response
-  const userinfo = new UserInfo();
-  userinfo.get(context);
+  const userinfo = new UserInfo(context);
+  userinfo.get();
   info.userdisplayname = userinfo.displayName;
   context.res = {
     headers: { 'Content-Type': 'application/json' },
