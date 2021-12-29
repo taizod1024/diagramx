@@ -26,7 +26,10 @@ export default defineComponent({
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand">{{ appinfo.appname }}</a>
+          <a class="navbar-brand"
+            ><img src="image/app.svg" style="filter: invert(100%)" />
+            {{ appinfo.appname }}</a
+          >
           <button
             class="navbar-toggler"
             type="button"
