@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
-import { AppInfo } from '../api/common/AppInfo';
-import { UserInfo } from '../api/common/UserInfo';
+import { AppInfo } from '../api/share/AppInfo';
+import { UserInfo } from '../api/share/UserInfo';
 export default defineComponent({
   components: {},
   setup() {
@@ -64,36 +64,12 @@ export default defineComponent({
           >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <li class="nav-item dropdown col-12 col-md-auto">
-                  <a
-                    class="dropdown-toggle btn btn-outline-light"
-                    href="#"
-                    id="dropdown-profile"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    >sign in with ...
-                  </a>
-
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="dropdown-profile"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="/login/github">github</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/twitter">twitter</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/google">google</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/facebook"
-                        >facebook</a
-                      >
-                    </li>
-                  </ul>
-                </li>
+                <router-link to="/signup" class="m-1 btn btn-outline-light"
+                  >sign up
+                </router-link>
+                <router-link to="/signin" class="m-1 btn btn-outline-light"
+                  >sign in
+                </router-link>
               </template>
               <template v-if="userinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
@@ -158,8 +134,7 @@ export default defineComponent({
       </nav>
     </header>
 
-    <main>
-      <p>debug: {{ text }}</p>
+    <main class="mt-4">
       <router-view />
     </main>
 

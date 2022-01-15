@@ -23,7 +23,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "api/common/AppInfo.ts"
+    "api/share/AppInfo.ts"
   ],
   "exclude": ["node_modules"]
 }
