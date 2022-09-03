@@ -1,5 +1,5 @@
 <template>
   <div class="listdiagram">
-    <h3>list diagrams</h3>
+    <h5>list diagrams</h5>
   </div>
 </template>

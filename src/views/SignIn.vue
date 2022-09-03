@@ -1,27 +1,29 @@
 <template>
   <div class="signin">
-    <h6>Sign in to diagramx</h6>
-    <h3>Sign in with ...</h3>
-    <div class="mt-4 container">
+    <h5>sign in with ...</h5>
+    <div class="container col-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2">
       <a
-        class="col-12 col-md-4 m-1 mr-1 btn btn-lg btn-dark"
+        class="col-12 m-1 mr-1 btn btn-sm btn-outline-dark"
         href="/login/github"
-        >GitHub</a
+        >github</a
       >
       <a
-        class="col-12 col-md-4 m-1 mr-1 btn btn-lg btn-info text-white"
+        class="col-12 m-1 mr-1 btn btn-sm btn-outline-dark"
         href="/login/twitter"
-        >Twitter</a
+        >twitter</a
       >
       <a
-        class="col-12 col-md-4 m-1 mr-1 btn btn-lg btn-danger"
+        class="col-12 m-1 mr-1 btn btn-sm btn-outline-dark"
         href="/login/google"
-        >Google</a
+        >google</a
       >
       <a
-        class="col-12 col-md-4 m-1 mr-1 btn btn-lg btn-primary"
+        class="col-12 m-1 mr-1 btn btn-sm btn-outline-dark"
         href="/login/facebook"
-        >Facebook</a
+        >facebook</a
+      >
+      <a class="col-12 m-1 mr-1 btn btn-sm btn-outline-dark" href="/login/aad"
+        >azure ad</a
       >
     </div>
   </div>

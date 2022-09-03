@@ -1,6 +1,6 @@
 <template>
   <div class="userdiagram">
-    <h3>user diagrams</h3>
+    <h5>user diagrams</h5>
   </div>
 </template>
 

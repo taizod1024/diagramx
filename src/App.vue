@@ -22,14 +22,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div class="app-text">
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand"
-            ><img src="image/app.svg" style="filter: invert(100%)" />
-            {{ appinfo.appname }}</a
-          >
+          <a class="navbar-brand"> {{ appinfo.appname }}</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -64,10 +61,12 @@ export default defineComponent({
           >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <router-link to="/signup" class="m-1 btn btn-outline-light"
+                <router-link to="/signup" class="m-1 btn btn-sm btn-light"
                   >sign up
                 </router-link>
-                <router-link to="/signin" class="m-1 btn btn-outline-light"
+                <router-link
+                  to="/signin"
+                  class="m-1 btn btn-sm btn-outline-light"
                   >sign in
                 </router-link>
               </template>
@@ -84,10 +83,12 @@ export default defineComponent({
                   </a>
 
                   <ul
-                    class="dropdown-menu dropdown-menu-end"
+                    class="dropdown-menu dropdown-menu-end app-text"
                     aria-labelledby="dropdown-new"
                   >
-                    <li><a class="dropdown-item" href="#">+ new diagram</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">+ new diagram</a>
+                    </li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown col-12 col-md-auto">
@@ -104,14 +105,13 @@ export default defineComponent({
                         :title="userinfo.displayName"
                         style="border-radius: 50%; width: 24px; height: 24px"
                       />
+                      {{ userinfo.me.userDetails }}
                     </template>
-                    <template v-else>
-                      {{ userinfo.displayName }}
-                    </template>
+                    <template v-else> {{ userinfo.me.userDetails }} </template>
                   </a>
 
                   <ul
-                    class="dropdown-menu dropdown-menu-end"
+                    class="dropdown-menu dropdown-menu-end app-text"
                     aria-labelledby="dropdown-profile"
                   >
                     <li>
@@ -140,11 +140,9 @@ export default defineComponent({
       <router-view />
     </main>
 
-    <footer class="text-muted py-5">
+    <!-- フッタ -->
+    <footer class="fixed-bottom footer py-3 app-bg-gray">
       <div class="container">
-        <p class="float-end mb-1">
-          <a href="#">back to top</a>
-        </p>
         <p class="mb-0">
           {{ appinfo.appname }}
           | <a :href="appinfo.author">author</a> |
@@ -162,5 +160,11 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.app-text {
+  font-size: 14px !important;
+}
+.app-bg-gray {
+  background: #e8e8e8;
 }
 </style>
