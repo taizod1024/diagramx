@@ -121,7 +121,9 @@ export default defineComponent({
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
                     </li>
-                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
                     <li>
                       <a class="dropdown-item" href="/logout">sign out</a>
                     </li>
