@@ -42,7 +42,7 @@ export class UserInfo {
   }
 
   /** get user info on server */
-  get() {
+  get(): void {
     const header = this.context.req?.headers['x-ms-client-principal'];
     if (!header) return;
     const encoded = Buffer.from(header, 'base64');
@@ -53,7 +53,7 @@ export class UserInfo {
   }
 
   /** get done */
-  getDone() {
+  getDone(): void {
     this.isGetDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
