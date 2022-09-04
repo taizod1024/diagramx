@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
-import { AppInfo } from '../api/common/AppInfo';
-import { UserInfo } from '../api/common/UserInfo';
+import { AppInfo } from '../api/share/AppInfo';
+import { UserInfo } from '../api/share/UserInfo';
+
 export default defineComponent({
   components: {},
   setup() {
@@ -22,14 +23,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <div class="app-text">
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand"
-            ><img src="image/app.svg" style="filter: invert(100%)" />
-            {{ appinfo.appname }}</a
-          >
+          <a class="navbar-brand"> {{ appinfo.appname }}</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -64,36 +62,14 @@ export default defineComponent({
           >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <li class="nav-item dropdown col-12 col-md-auto">
-                  <a
-                    class="dropdown-toggle btn btn-outline-light"
-                    href="#"
-                    id="dropdown-profile"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    >sign in with ...
-                  </a>
-
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="dropdown-profile"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="/login/github">github</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/twitter">twitter</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/google">google</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/login/facebook"
-                        >facebook</a
-                      >
-                    </li>
-                  </ul>
-                </li>
+                <router-link to="/signup" class="m-1 btn btn-sm btn-light"
+                  >sign up
+                </router-link>
+                <router-link
+                  to="/signin"
+                  class="m-1 btn btn-sm btn-outline-light"
+                  >sign in
+                </router-link>
               </template>
               <template v-if="userinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
@@ -108,10 +84,12 @@ export default defineComponent({
                   </a>
 
                   <ul
-                    class="dropdown-menu dropdown-menu-end"
+                    class="dropdown-menu dropdown-menu-end app-text"
                     aria-labelledby="dropdown-new"
                   >
-                    <li><a class="dropdown-item" href="#">+ new diagram</a></li>
+                    <li>
+                      <a class="dropdown-item" href="#">+ new diagram</a>
+                    </li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown col-12 col-md-auto">
@@ -128,24 +106,25 @@ export default defineComponent({
                         :title="userinfo.displayName"
                         style="border-radius: 50%; width: 24px; height: 24px"
                       />
+                      {{ userinfo.me.userDetails }}
                     </template>
-                    <template v-else>
-                      {{ userinfo.displayName }}
-                    </template>
+                    <template v-else> {{ userinfo.me.userDetails }} </template>
                   </a>
 
                   <ul
-                    class="dropdown-menu dropdown-menu-end"
+                    class="dropdown-menu dropdown-menu-end app-text"
                     aria-labelledby="dropdown-profile"
                   >
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
                         >signed in with
-                        <b> {{ userinfo.me.identityProvider }}</b> as
+                        <b>{{ userinfo.me.identityProvider }}</b> as
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
                     </li>
-                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
                     <li>
                       <a class="dropdown-item" href="/logout">sign out</a>
                     </li>
@@ -158,16 +137,11 @@ export default defineComponent({
       </nav>
     </header>
 
-    <main>
-      <p>debug: {{ text }}</p>
-      <router-view />
-    </main>
+    <router-view />
 
-    <footer class="text-muted py-5">
+    <!-- フッタ -->
+    <footer class="fixed-bottom footer py-3 app-bg-secondary">
       <div class="container">
-        <p class="float-end mb-1">
-          <a href="#">back to top</a>
-        </p>
         <p class="mb-0">
           {{ appinfo.appname }}
           | <a :href="appinfo.author">author</a> |
@@ -185,5 +159,14 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.app-text {
+  font-size: 14px !important;
+}
+.app-bg-primary {
+  background: #ffffff;
+}
+.app-bg-secondary {
+  background: #e8e8e8;
 }
 </style>

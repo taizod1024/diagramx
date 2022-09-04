@@ -3,6 +3,9 @@ import { ClientPrincipal } from './ClientPrincipal';
 
 /** user info class */
 export class UserInfo {
+  /** context */
+  context: any;
+
   /** current user */
   me: ClientPrincipal;
 
@@ -16,7 +19,8 @@ export class UserInfo {
   displayName: string;
 
   /** constructor */
-  constructor() {
+  constructor(context?: any) {
+    this.context = context;
     this.me = {
       userId: '',
       userRoles: [],
@@ -38,8 +42,8 @@ export class UserInfo {
   }
 
   /** get user info on server */
-  get(context: any) {
-    const header = context.req?.headers['x-ms-client-principal'];
+  get(): void {
+    const header = this.context.req?.headers['x-ms-client-principal'];
     if (!header) return;
     const encoded = Buffer.from(header, 'base64');
     const decoded = encoded.toString('ascii');
@@ -49,7 +53,7 @@ export class UserInfo {
   }
 
   /** get done */
-  getDone() {
+  getDone(): void {
     this.isGetDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
     this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;

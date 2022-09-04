@@ -1,29 +1,28 @@
 import { AzureFunction } from '@azure/functions';
-import { UserInfo } from '../common/UserInfo';
-import azurestorage from 'azure-storage';
+import { UserInfo } from '../share/UserInfo';
+import { BlobServiceClient } from '@azure/storage-blob';
 
-const httpTrigger: AzureFunction = async function (context) {
-  context.log('aaa_begin');
-  let info: any = {};
-  // table storage
-  let tableservice = azurestorage.createTableService();
-  tableservice.createTableIfNotExists(
-    'diagramt',
-    function (error, result, response) {
-      info.tableerror = error;
-    }
+export const httpTrigger: AzureFunction = async function (context) {
+  const blobconname = process.env.APP_BLOB_CONTAINER_NAME || '';
+  context.log(`${blobconname}: begin`);
+
+  const info: any = {};
+
+  // blob create if not exist
+  const blobservice = BlobServiceClient.fromConnectionString(
+    process.env.AZURE_STORAGE_CONNECTION_STRING || ''
   );
-  // blob storage
-  let blobservice = azurestorage.createBlobService();
-  blobservice.createContainerIfNotExists(
-    'diagramb',
-    function (error, result, response) {
-      info.bloberror = error;
-    }
-  );
+  const containerclient = blobservice.getContainerClient(blobconname);
+  if (await containerclient.exists()) {
+    context.log(`${blobconname}: Container exists`);
+  } else {
+    context.log(`${blobconname}: Container created`);
+    await blobservice.createContainer(blobconname);
+  }
+
   // response
-  const userinfo = new UserInfo();
-  userinfo.get(context);
+  const userinfo = new UserInfo(context);
+  userinfo.get();
   info.userdisplayname = userinfo.displayName;
   context.res = {
     headers: { 'Content-Type': 'application/json' },
@@ -31,8 +30,6 @@ const httpTrigger: AzureFunction = async function (context) {
       text: `swa api(${JSON.stringify(info)})`,
     },
   };
-  context.log('aaa_end');
+  context.log(`${blobconname}: end`);
   // throw 'aaa_error';
 };
-
-export default httpTrigger;

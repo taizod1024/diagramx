@@ -7,5 +7,14 @@
   "azureFunctions.preDeployTask": "npm prune (functions)",
   "css.styleSheets": [
     "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-  ]
+  ],
+  "files.exclude": {
+    "**/.*": false,
+    "**/.github": false,
+    "**/.vscode": false,
+    "**/*.config.js": false,
+    "**/*.json": false,
+    "**/dist": false,
+    "**/node_modules": false
+  }
 }

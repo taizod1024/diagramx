@@ -1,12 +1,21 @@
 {
   "recommendations": [
+    // azure
     "ms-vscode.azure-account",
     "ms-azuretools.vscode-azurefunctions",
+    "ms-azuretools.vscode-azureresourcegroups",
     "ms-azuretools.vscode-azurestaticwebapps",
-    "johnsoncodehk.volar",
+    "ms-azuretools.vscode-azurestorage",
+    "azurite.azurite",
+    // vue
+    "Vue.volar",
+    // typescript
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "ecmel.vscode-html-css",
-    "azurite.azurite"
+    // git
+    "mhutchie.git-graph",
+    "GitHub.vscode-pull-request-github",
+    "eamodio.gitlens"
   ]
 }
