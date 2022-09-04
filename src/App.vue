@@ -2,6 +2,7 @@
 import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
 import { AppInfo } from '../api/share/AppInfo';
 import { UserInfo } from '../api/share/UserInfo';
+
 export default defineComponent({
   components: {},
   setup() {
