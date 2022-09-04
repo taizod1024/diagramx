@@ -1,5 +1,5 @@
 <template>
-  <div class="userdiagram">
+  <div class="userdiagram mt-4">
     <h5>user diagrams</h5>
   </div>
 </template>

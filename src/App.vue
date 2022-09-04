@@ -117,7 +117,7 @@ export default defineComponent({
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
                         >signed in with
-                        <b> {{ userinfo.me.identityProvider }}</b> as
+                        <b>{{ userinfo.me.identityProvider }}</b> as
                         <b>{{ userinfo.me.userDetails }}</b>
                       </span>
                     </li>
@@ -136,9 +136,7 @@ export default defineComponent({
       </nav>
     </header>
 
-    <main class="mt-4">
-      <router-view />
-    </main>
+    <router-view />
 
     <!-- フッタ -->
     <footer class="fixed-bottom footer py-3 app-bg-secondary">

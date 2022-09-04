@@ -16,14 +16,6 @@
       "rewrite": "/.auth/login/google"
     },
     {
-      "route": "/login/facebook",
-      "rewrite": "/.auth/login/facebook"
-    },
-    {
-      "route": "/login/aad",
-      "rewrite": "/.auth/login/aad"
-    },
-    {
       "route": "/logout",
       "rewrite": "/.auth/logout"
     },
