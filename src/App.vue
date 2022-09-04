@@ -141,7 +141,7 @@ export default defineComponent({
     </main>
 
     <!-- フッタ -->
-    <footer class="fixed-bottom footer py-3 app-bg-gray">
+    <footer class="fixed-bottom footer py-3 app-bg-secondary">
       <div class="container">
         <p class="mb-0">
           {{ appinfo.appname }}
@@ -164,7 +164,10 @@ export default defineComponent({
 .app-text {
   font-size: 14px !important;
 }
-.app-bg-gray {
+.app-bg-primary {
+  background: #ffffff;
+}
+.app-bg-secondary {
   background: #e8e8e8;
 }
 </style>
