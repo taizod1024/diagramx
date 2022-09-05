@@ -1,14 +1,22 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import UserDiagram from '../views/ListDiagram.vue';
+import AllDiagrams from '../views/AllDiagrams.vue';
+import UserDiagrams from '../views/UserDiagrams.vue';
 import SignUp from '../views/SignUp.vue';
 import SignIn from '../views/SignIn.vue';
 
+/** route array */
 const routes: Array<RouteRecordRaw> = [
   {
     // all diagrams
     path: '/',
-    name: 'ListDiagram',
-    component: UserDiagram,
+    name: 'AllDiagrams',
+    component: AllDiagrams,
+  },
+  {
+    // user diagrams
+    path: '/user',
+    name: 'UserDiagram',
+    component: UserDiagrams,
   },
   {
     // sign up
@@ -24,16 +32,27 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     // your diagrams
-    path: '/user',
-    name: 'UserDiagram',
+    path: '/my',
+    name: 'MyDiagram',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "userdiagram" */ '../views/UserDiagram.vue'),
+      import(/* webpackChunkName: "userdiagram" */ '../views/MyDiagrams.vue'),
+  },
+  {
+    // new diagrams
+    path: '/new',
+    name: 'NewDiagram',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "newdiagram" */ '../views/NewDiagram.vue'),
   },
 ];
 
+/** router object */
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,

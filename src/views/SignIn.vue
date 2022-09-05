@@ -1,7 +1,7 @@
 <template>
   <div class="signin mt-4">
-    <h5>Sign in with:</h5>
-    <div class="container col-8 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-2">
+    <h5>sign in with</h5>
+    <div class="container col-6 col-sm-5 col-md-4 col-lg-3 col-xl-2 col-xxl-1">
       <a class="col-12 m-1 mr-1 btn btn-outline-dark" href="/login/github"
         >github</a
       >

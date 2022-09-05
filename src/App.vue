@@ -11,7 +11,7 @@ export default defineComponent({
     const text = ref('');
     onBeforeMount(async () => {
       await userinfo.getAsync();
-      text.value = await (await fetch('/api/message')).json();
+      text.value = await (await fetch('/api/getDiagramsSummary')).json();
     });
     return {
       appinfo,
@@ -47,10 +47,15 @@ export default defineComponent({
                   >all diagrams</router-link
                 >
               </li>
+              <li class="nav-item col-12 col-md-auto">
+                <router-link to="/user" class="nav-link"
+                  >user diagrams</router-link
+                >
+              </li>
               <template v-if="userinfo.isLogin()">
                 <li class="nav-item col-12 col-md-auto">
-                  <router-link to="/user" class="nav-link"
-                    >your diagrams</router-link
+                  <router-link to="/my" class="nav-link"
+                    >my diagrams</router-link
                   >
                 </li>
               </template>
@@ -62,14 +67,18 @@ export default defineComponent({
           >
             <ul class="navbar-nav mr-auto">
               <template v-if="userinfo.isNotLogin()">
-                <router-link to="/signup" class="m-1 btn btn-sm btn-light"
-                  >sign up
-                </router-link>
-                <router-link
-                  to="/signin"
-                  class="m-1 btn btn-sm btn-outline-light"
-                  >sign in
-                </router-link>
+                <li>
+                  <router-link to="/signup" class="m-1 btn btn-sm btn-light"
+                    >sign up
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/signin"
+                    class="m-1 btn btn-sm btn-outline-light"
+                    >sign in
+                  </router-link>
+                </li>
               </template>
               <template v-if="userinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
@@ -88,7 +97,12 @@ export default defineComponent({
                     aria-labelledby="dropdown-new"
                   >
                     <li>
-                      <a class="dropdown-item" href="#">+ new diagram</a>
+                      <router-link
+                        to="/new"
+                        class="m-1 btn btn-sm btn-outline-light dropdown-item"
+                      >
+                        + new diagram
+                      </router-link>
                     </li>
                   </ul>
                 </li>

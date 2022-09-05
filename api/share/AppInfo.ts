@@ -7,5 +7,5 @@ export class AppInfo {
   author = 'https://github.com/taizod1024/';
 
   /** repository */
-  repository = 'https://github.com/taizod1024/diagram';
+  repository = 'https://github.com/taizod1024/diagramx';
 }

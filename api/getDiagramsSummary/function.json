@@ -13,7 +13,7 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/message/index.js",
+  "scriptFile": "../dist/getDiagramsSummary/index.js",
   "logging": {
     "applicationInsights": {
       "samplingSettings": {

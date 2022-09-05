@@ -1,6 +1,6 @@
 <template>
-  <div class="userdiagram mt-4">
-    <h5>user diagrams</h5>
+  <div class="mydiagrams mt-4">
+    <h5>my diagrams</h5>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { defineComponent } from 'vue';
 // import HelloWorld from '@/components/_HelloWorld.vue'; // @ is an alias to /src
 
 export default defineComponent({
-  name: 'UserDiagram',
+  name: 'MyDiagrams',
   // components: {
   //   HelloWorld,
   // },
