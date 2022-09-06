@@ -15,7 +15,6 @@
     "ecmel.vscode-html-css",
     // git
     "mhutchie.git-graph",
-    "GitHub.vscode-pull-request-github",
-    "eamodio.gitlens"
+    "GitHub.vscode-pull-request-github"
   ]
 }
