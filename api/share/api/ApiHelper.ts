@@ -2,7 +2,7 @@ import { Context } from '@azure/functions';
 import { BlobServiceClient } from '@azure/storage-blob';
 
 /** function helper class */
-class FunctionHelper {
+class ApiHelper {
   /** blob container name */
   blobconname = process.env.APP_BLOB_CONTAINER_NAME || '';
 
@@ -24,4 +24,4 @@ class FunctionHelper {
     }
   }
 }
-export const functionhelper = new FunctionHelper();
+export const apihelper = new ApiHelper();

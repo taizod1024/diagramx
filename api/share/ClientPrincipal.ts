@@ -7,7 +7,7 @@ export type ClientPrincipal = {
   userRoles: string[];
 
   /** identity provider */
-  identityProvider: string;
+  identityProvider: '' | 'github' | 'twitter' | 'google';
 
   /** user details */
   userDetails: string;

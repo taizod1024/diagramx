@@ -1,22 +1,19 @@
 <script lang="ts">
-import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
+import { defineComponent, onBeforeMount, reactive } from 'vue';
 import { AppInfo } from '../api/share/AppInfo';
-import { UserInfo } from '../api/share/UserInfo';
+import { AppUserInfo } from '../api/share/app/AppUserInfo';
 
 export default defineComponent({
   components: {},
   setup() {
     const appinfo = reactive(new AppInfo());
-    const userinfo = reactive(new UserInfo());
-    const text = ref('');
+    const appuserinfo = reactive(new AppUserInfo());
     onBeforeMount(async () => {
-      await userinfo.getAsync();
-      text.value = await (await fetch('/api/getDiagramsSummary')).json();
+      await appuserinfo.getAsync();
     });
     return {
       appinfo,
-      userinfo,
-      text,
+      appuserinfo,
     };
   },
 });
@@ -52,7 +49,7 @@ export default defineComponent({
                   >user diagrams</router-link
                 >
               </li>
-              <template v-if="userinfo.isLogin()">
+              <template v-if="appuserinfo.isLogin()">
                 <li class="nav-item col-12 col-md-auto">
                   <router-link to="/my" class="nav-link"
                     >my diagrams</router-link
@@ -66,12 +63,7 @@ export default defineComponent({
             id="bdNavbar"
           >
             <ul class="navbar-nav mr-auto">
-              <template v-if="userinfo.isNotLogin()">
-                <li>
-                  <router-link to="/signup" class="m-1 btn btn-sm btn-light"
-                    >sign up
-                  </router-link>
-                </li>
+              <template v-if="appuserinfo.isNotLogin()">
                 <li>
                   <router-link
                     to="/signin"
@@ -79,8 +71,13 @@ export default defineComponent({
                     >sign in
                   </router-link>
                 </li>
+                <li>
+                  <router-link to="/signup" class="m-1 btn btn-sm btn-light"
+                    >sign up
+                  </router-link>
+                </li>
               </template>
-              <template v-if="userinfo.isLogin()">
+              <template v-if="appuserinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
                   <a
                     class="nav-link dropdown-toggle"
@@ -97,10 +94,7 @@ export default defineComponent({
                     aria-labelledby="dropdown-new"
                   >
                     <li>
-                      <router-link
-                        to="/new"
-                        class="m-1 btn btn-sm btn-outline-light dropdown-item"
-                      >
+                      <router-link to="/new" class="dropdown-item">
                         + new diagram
                       </router-link>
                     </li>
@@ -114,15 +108,17 @@ export default defineComponent({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <template v-if="userinfo.isEmail()">
+                    <template v-if="appuserinfo.avatarUrl">
                       <img
-                        :src="userinfo.avatarUrl"
-                        :title="userinfo.displayName"
+                        :src="appuserinfo.avatarUrl"
+                        :title="appuserinfo.displayName"
                         style="border-radius: 50%; width: 24px; height: 24px"
-                      />
-                      {{ userinfo.me.userDetails }}
+                      />&nbsp;
+                      {{ appuserinfo.me.userDetails }}
                     </template>
-                    <template v-else> {{ userinfo.me.userDetails }} </template>
+                    <template v-else>
+                      {{ appuserinfo.me.userDetails }}
+                    </template>
                   </a>
 
                   <ul
@@ -132,8 +128,8 @@ export default defineComponent({
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
                         >signed in with
-                        <b>{{ userinfo.me.identityProvider }}</b> as
-                        <b>{{ userinfo.me.userDetails }}</b>
+                        <b>{{ appuserinfo.me.identityProvider }}</b> as
+                        <b>{{ appuserinfo.me.userDetails }}</b>
                       </span>
                     </li>
                     <li>
