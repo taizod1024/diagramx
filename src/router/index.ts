@@ -34,21 +34,13 @@ const routes: Array<RouteRecordRaw> = [
     // your diagrams
     path: '/my',
     name: 'MyDiagram',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "userdiagram" */ '../views/MyDiagrams.vue'),
+    component: () => import('../views/MyDiagrams.vue'),
   },
   {
     // new diagrams
     path: '/new',
     name: 'NewDiagram',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "newdiagram" */ '../views/NewDiagram.vue'),
+    component: () => import('../views/NewDiagram.vue'),
   },
 ];
 

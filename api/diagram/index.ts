@@ -1,8 +1,8 @@
 import { AzureFunction } from '@azure/functions';
 import { apihelper } from '../share/api/ApiHelper';
-import { apidiagramhelper } from '../share/api/ApiDiagramHelper';
+import { apidiagramhelper } from './api';
 
-/** httptrigger function */
+/** diagram function */
 export const httpTrigger: AzureFunction = async function (context) {
   await apihelper.checkBlobContainerIfNotExist(context);
   const diagrams = await apidiagramhelper.getAllDiagmraNamesAsync();

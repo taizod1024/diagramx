@@ -10,8 +10,5 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'UserDiagrams',
-  // components: {
-  //   HelloWorld,
-  // },
 });
 </script>

@@ -1,24 +1,3 @@
-<script lang="ts">
-import { defineComponent, onBeforeMount, reactive } from 'vue';
-import { AppInfo } from '../api/share/AppInfo';
-import { AppUserInfo } from '../api/share/app/AppUserInfo';
-
-export default defineComponent({
-  components: {},
-  setup() {
-    const appinfo = reactive(new AppInfo());
-    const appuserinfo = reactive(new AppUserInfo());
-    onBeforeMount(async () => {
-      await appuserinfo.getAsync();
-    });
-    return {
-      appinfo,
-      appuserinfo,
-    };
-  },
-});
-</script>
-
 <template>
   <div class="app-text">
     <header>
@@ -180,3 +159,24 @@ export default defineComponent({
   background: #e8e8e8;
 }
 </style>
+
+<script lang="ts">
+import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { AppInfo } from '../api/share/AppInfo';
+import { AppUserInfo } from '../api/share/app/AppUserInfo';
+
+export default defineComponent({
+  components: {},
+  setup() {
+    const appinfo = reactive(new AppInfo());
+    const appuserinfo = reactive(new AppUserInfo());
+    onBeforeMount(async () => {
+      await appuserinfo.getAsync();
+    });
+    return {
+      appinfo,
+      appuserinfo,
+    };
+  },
+});
+</script>

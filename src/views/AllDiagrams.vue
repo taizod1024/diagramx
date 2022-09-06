@@ -10,8 +10,8 @@
         {{ error }}
       </div>
     </div>
-    <div v-if="info">
-      {{ info }}
+    <div v-if="content">
+      {{ content }}
     </div>
     <div v-else>loading...</div>
   </div>
@@ -19,20 +19,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { appdiagramhelper } from '../../api/share/app/AppDiagramHelper';
+import { appdiagramhelper } from '../../api/diagram/app';
 
 export default defineComponent({
   name: 'AllDiagrams',
-  // components: {
-  //   HelloWorld,
-  // },
   setup() {
-    const info = ref({});
+    const content = ref({});
     const error = ref('');
     const load = async () => {
       try {
-        const diagrams = await appdiagramhelper.getAllDiagramsAsync();
-        info.value = diagrams;
+        const diagrams = await appdiagramhelper.getAllDiagramNamesAsync();
+        content.value = diagrams;
       } catch (err) {
         error.value = err;
         console.log(error.value);
@@ -40,7 +37,7 @@ export default defineComponent({
     };
     load();
     return {
-      info,
+      content,
       error,
     };
   },

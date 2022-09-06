@@ -1,7 +1,8 @@
-import { apihelper } from './ApiHelper';
+import { apihelper } from '../share/api/ApiHelper';
 
-/** user info class */
+/** api diagram helper class */
 class ApiDiagramHelper {
+  /** get all diagram */
   async getAllDiagmraNamesAsync(): Promise<string[]> {
     // response
     const blobs = apihelper.containerclient.listBlobsFlat();
@@ -12,4 +13,5 @@ class ApiDiagramHelper {
     return diagrams;
   }
 }
+/** api diagram helper object */
 export const apidiagramhelper = new ApiDiagramHelper();
