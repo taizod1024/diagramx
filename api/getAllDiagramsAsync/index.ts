@@ -5,11 +5,11 @@ import { apidiagramhelper } from '../share/api/ApiDiagramHelper';
 /** httptrigger function */
 export const httpTrigger: AzureFunction = async function (context) {
   await apihelper.checkBlobContainerIfNotExist(context);
-  const names = await apidiagramhelper.getAllDiagmraNamesAsync();
+  const diagrams = await apidiagramhelper.getAllDiagmraNamesAsync();
   context.res = {
     headers: { 'Content-Type': 'application/json' },
     body: {
-      names,
+      diagrams,
     },
   };
 };

@@ -1,12 +1,16 @@
+import { apphelper } from '../AppHelper';
+import { Diagram } from '../Diagram';
+
 /** user info class */
 class AppDiagramHelper {
-  async getAllDiagmrasAsync(): Promise<any> {
-    //     const res: Response = await fetch('/api/getAllDiagramsAsync');
-    //     if (res.ok) {
-    //       const dgm = await res.json();
-    //       return dgm;
-    //     }
-    return {};
+  async getAllDiagramsAsync(): Promise<Diagram[]> {
+    const response: Response = await fetch('/api/getAllDiagramsAsync');
+    if (!response.ok) {
+      const message = apphelper.responseToMessage(response);
+      throw message;
+    }
+    const diagrams = (await response.json()).diagrams;
+    return diagrams;
   }
 }
 export const appdiagramhelper = new AppDiagramHelper();
