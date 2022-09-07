@@ -1,4 +1,4 @@
-import { UserInfo } from '../UserInfo';
+import { UserInfo } from './base';
 
 /** user info class */
 export class AppUserInfo extends UserInfo {

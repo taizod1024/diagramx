@@ -1,4 +1,4 @@
-import { apihelper } from '../share/api/ApiHelper';
+import { apihelper } from '../share/ApiHelper';
 
 /** api diagram helper class */
 class ApiDiagramHelper {

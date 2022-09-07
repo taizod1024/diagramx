@@ -1,5 +1,5 @@
 import md5 from 'md5';
-import { ClientPrincipal } from './ClientPrincipal';
+import { ClientPrincipal } from '../share/ClientPrincipal';
 
 /** user info class */
 export class UserInfo {

@@ -1,5 +1,5 @@
-import { apphelper } from '../share/app/AppHelper';
-import { Diagram } from '../share/Diagram';
+import { apphelper } from '../share/AppHelper';
+import { Diagram } from './base';
 
 /** app diagram helper class */
 class AppDiagramHelper {

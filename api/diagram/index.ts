@@ -1,5 +1,5 @@
 import { AzureFunction } from '@azure/functions';
-import { apihelper } from '../share/api/ApiHelper';
+import { apihelper } from '../share/ApiHelper';
 import { apidiagramhelper } from './api';
 
 /** diagram function */
