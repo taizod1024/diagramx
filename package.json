@@ -67,7 +67,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "_id": "hello@0.1.0",
+  "_id": "diagramx-app@0.1.0",
   "husky": {
     "hooks": {
       "pre-commit": "./bin/check_no_main_branch.sh",

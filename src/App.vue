@@ -1,27 +1,3 @@
-<script lang="ts">
-import { defineComponent, onBeforeMount, reactive, ref } from 'vue';
-import { AppInfo } from '../api/share/AppInfo';
-import { UserInfo } from '../api/share/UserInfo';
-
-export default defineComponent({
-  components: {},
-  setup() {
-    const appinfo = reactive(new AppInfo());
-    const userinfo = reactive(new UserInfo());
-    const text = ref('');
-    onBeforeMount(async () => {
-      await userinfo.getAsync();
-      text.value = await (await fetch('/api/message')).json();
-    });
-    return {
-      appinfo,
-      userinfo,
-      text,
-    };
-  },
-});
-</script>
-
 <template>
   <div class="app-text">
     <header>
@@ -47,10 +23,15 @@ export default defineComponent({
                   >all diagrams</router-link
                 >
               </li>
-              <template v-if="userinfo.isLogin()">
+              <li class="nav-item col-12 col-md-auto">
+                <router-link to="/user" class="nav-link"
+                  >user diagrams</router-link
+                >
+              </li>
+              <template v-if="appuserinfo.isLogin()">
                 <li class="nav-item col-12 col-md-auto">
-                  <router-link to="/user" class="nav-link"
-                    >your diagrams</router-link
+                  <router-link to="/my" class="nav-link"
+                    >my diagrams</router-link
                   >
                 </li>
               </template>
@@ -61,17 +42,21 @@ export default defineComponent({
             id="bdNavbar"
           >
             <ul class="navbar-nav mr-auto">
-              <template v-if="userinfo.isNotLogin()">
-                <router-link to="/signup" class="m-1 btn btn-sm btn-light"
-                  >sign up
-                </router-link>
-                <router-link
-                  to="/signin"
-                  class="m-1 btn btn-sm btn-outline-light"
-                  >sign in
-                </router-link>
+              <template v-if="appuserinfo.isNotLogin()">
+                <li>
+                  <router-link
+                    to="/signin"
+                    class="m-1 btn btn-sm btn-outline-light"
+                    >sign in
+                  </router-link>
+                </li>
+                <li>
+                  <router-link to="/signup" class="m-1 btn btn-sm btn-light"
+                    >sign up
+                  </router-link>
+                </li>
               </template>
-              <template v-if="userinfo.isLogin()">
+              <template v-if="appuserinfo.isLogin()">
                 <li class="nav-item dropdown col-12 col-md-auto">
                   <a
                     class="nav-link dropdown-toggle"
@@ -88,7 +73,9 @@ export default defineComponent({
                     aria-labelledby="dropdown-new"
                   >
                     <li>
-                      <a class="dropdown-item" href="#">+ new diagram</a>
+                      <router-link to="/new" class="dropdown-item">
+                        + new diagram
+                      </router-link>
                     </li>
                   </ul>
                 </li>
@@ -100,15 +87,17 @@ export default defineComponent({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <template v-if="userinfo.isEmail()">
+                    <template v-if="appuserinfo.avatarUrl">
                       <img
-                        :src="userinfo.avatarUrl"
-                        :title="userinfo.displayName"
+                        :src="appuserinfo.avatarUrl"
+                        :title="appuserinfo.displayName"
                         style="border-radius: 50%; width: 24px; height: 24px"
-                      />
-                      {{ userinfo.me.userDetails }}
+                      />&nbsp;
+                      {{ appuserinfo.me.userDetails }}
                     </template>
-                    <template v-else> {{ userinfo.me.userDetails }} </template>
+                    <template v-else>
+                      {{ appuserinfo.me.userDetails }}
+                    </template>
                   </a>
 
                   <ul
@@ -118,8 +107,8 @@ export default defineComponent({
                     <li>
                       <span class="dropdown-item-text" style="min-width: 250px"
                         >signed in with
-                        <b>{{ userinfo.me.identityProvider }}</b> as
-                        <b>{{ userinfo.me.userDetails }}</b>
+                        <b>{{ appuserinfo.me.identityProvider }}</b> as
+                        <b>{{ appuserinfo.me.userDetails }}</b>
                       </span>
                     </li>
                     <li>
@@ -154,7 +143,9 @@ export default defineComponent({
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', Avenir, Helvetica, Arial,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -170,3 +161,24 @@ export default defineComponent({
   background: #e8e8e8;
 }
 </style>
+
+<script lang="ts">
+import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { AppInfo } from '../api/appinfo/base';
+import { AppUserInfo } from '../api/userinfo/app';
+
+export default defineComponent({
+  components: {},
+  setup() {
+    const appinfo = reactive(new AppInfo());
+    const appuserinfo = reactive(new AppUserInfo());
+    onBeforeMount(async () => {
+      await appuserinfo.getAsync();
+    });
+    return {
+      appinfo,
+      appuserinfo,
+    };
+  },
+});
+</script>

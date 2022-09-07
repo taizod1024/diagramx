@@ -4,6 +4,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "AZURE_STORAGE_CONNECTION_STRING": "UseDevelopmentStorage=true",
-    "APP_BLOB_CONTAINER_NAME": "diagramx-01"
+    "APP_BLOB_CONTAINER_NAME": "diagramx-01",
+    "APP_DIAGRAM_BLOB_URL": "http://127.0.0.1:10000/devstoreaccount1/"
   }
 }

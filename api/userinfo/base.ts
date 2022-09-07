@@ -1,5 +1,5 @@
 import md5 from 'md5';
-import { ClientPrincipal } from './ClientPrincipal';
+import { ClientPrincipal } from '../share/ClientPrincipal';
 
 /** user info class */
 export class UserInfo {
@@ -32,31 +32,17 @@ export class UserInfo {
     this.displayName = '';
   }
 
-  /** get user info on client */
-  async getAsync(): Promise<void> {
-    const response = await fetch('/.auth/me');
-    const payload = await response.json();
-    const { clientPrincipal } = payload;
-    Object.assign(this.me, clientPrincipal);
-    this.getDone();
-  }
-
-  /** get user info on server */
-  get(): void {
-    const header = this.context.req?.headers['x-ms-client-principal'];
-    if (!header) return;
-    const encoded = Buffer.from(header, 'base64');
-    const decoded = encoded.toString('ascii');
-    const clientPrincipal = JSON.parse(decoded);
-    Object.assign(this.me, clientPrincipal);
-    this.getDone();
-  }
-
   /** get done */
   getDone(): void {
     this.isGetDone = true;
     const hash = md5(this.me.userDetails.toLowerCase());
-    this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
+    if (this.me.identityProvider === 'github') {
+      this.avatarUrl = `https://github.com/${this.me.userDetails}.png`;
+    } else if (this.me.identityProvider === 'google') {
+      this.avatarUrl = `https://www.gravatar.com/avatar/${hash}`;
+    } else {
+      this.avatarUrl = '';
+    }
     this.displayName = this.isEmail()
       ? this.me.userDetails
       : this.me.identityProvider + ' / ' + this.me.userDetails;

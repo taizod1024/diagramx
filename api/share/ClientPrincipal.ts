@@ -1,7 +1,14 @@
-/** client principal */
+/** client principal type */
 export type ClientPrincipal = {
+  /** user id */
   userId: string;
+
+  /** user roles */
   userRoles: string[];
-  identityProvider: string;
+
+  /** identity provider */
+  identityProvider: '' | 'github' | 'twitter' | 'google';
+
+  /** user details */
   userDetails: string;
 };
